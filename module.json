@@ -1,0 +1,34 @@
+{
+  "id": "fvtt-mod-miscpatches",
+  "title": "Misc Patches",
+  "description": "Small, independent fixes for things other modules and the platform get slightly wrong at the table, each behind its own setting. First patch: a listed teleport (Misty Step, Dimension Door, Moonlight Step, Shadow Step, Arcane Charge) lets the caster's token cross walls and other creatures on the one move that follows the cast, and the destination is judged by the spell's own words — a space you can see, an unoccupied space.",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "Matthew Sippel"
+    }
+  ],
+  "esmodules": [
+    "scripts/miscpatches.js"
+  ],
+  "relationships": {
+    "systems": [
+      {
+        "id": "dnd5e",
+        "type": "system",
+        "compatibility": {
+          "minimum": "5.0.0"
+        }
+      }
+    ]
+  },
+  "compatibility": {
+    "minimum": "13",
+    "verified": "14"
+  },
+  "url": "https://github.com/Txpple/fvtt-mod-miscpatches",
+  "manifest": "https://github.com/Txpple/fvtt-mod-miscpatches/releases/latest/download/module.json",
+  "download": "https://github.com/Txpple/fvtt-mod-miscpatches/releases/download/v1.0.0/fvtt-mod-miscpatches.zip",
+  "readme": "https://github.com/Txpple/fvtt-mod-miscpatches#readme",
+  "license": "MIT"
+}
