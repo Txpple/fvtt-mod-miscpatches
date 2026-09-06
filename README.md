@@ -11,6 +11,12 @@ Requires dnd5e 5.x on Foundry v13 or v14.
 
 ### Teleports cross walls and creatures
 
+> **Carried into FX Studio on 2026-09-06.** FX Studio's own move shape now teleports the token
+> with Foundry's `displace` action and judges the spot by the spell's words (`seen`,
+> `unoccupied` on the look; `../fvtt-mod-fxstudio`, DESIGN §8). This patch stays here, switched
+> on, for a table that still runs Automated Animations (prod until FX Studio's cutover); once
+> FX Studio plays the moves it is switched off and retired.
+
 **The problem.** Cast Misty Step with an animation module's teleport (Automated Animations'
 circle), pick a destination, and the token is stopped by a wall or by another creature in the
 way. The animation moves the token with a plain move, Foundry walks a plain move, so walls stop

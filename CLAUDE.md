@@ -42,7 +42,7 @@ Bump `version` AND the `download` URL in `module.json` together, one `release:` 
 
 | Patch | File | Settings |
 | --- | --- | --- |
-| Teleports cross walls and creatures | `scripts/patches/teleports.js` | `teleports` (switch), `teleportList` (names) |
+| Teleports cross walls and creatures — **carried into FX Studio 2026-09-06** (its move shape: `displace`, the spot judged by `seen`/`unoccupied`); this copy stays on for prod under AA until FX Studio's cutover, then retires | `scripts/patches/teleports.js` | `teleports` (switch), `teleportList` (names) |
 
 **Teleports:** Automated Animations' teleport preset moves the token with a bare
 `document.move()`; Foundry walks that, so walls and (under dnd5e's full movement automation)
