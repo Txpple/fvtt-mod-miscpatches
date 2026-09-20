@@ -2,28 +2,16 @@
 //
 //   node tools/smoke-teleports.mjs
 //
-// Connects as the suite identity through the house MCP repo's Foundry client (cloned beside this
-// one), views the Battle Flow test range, places a mover and a hostile blocker, raises a wall,
-// and makes the moves an animation module would make: a bare `document.move()`. Everything it
-// creates is deleted in `finally`; the settings it touches are restored.
-import { readFileSync } from 'node:fs';
-import { Foundry } from 'file:///D:/Workbench/FVTT/Repos/fvtt-mcp-molten5e/dist/foundry.js';
+// Connects as the suite identity through the house MCP's declared client contract
+// (`fvtt-mcp-dnd5e/client`, a file: dependency on the repo cloned beside this one — the `local`
+// preset, FOUNDRY_SUITE_USER from its .env), views the Battle Flow test range, places a mover and
+// a hostile blocker, raises a wall, and makes the moves an animation module would make: a bare
+// `document.move()`. Everything it creates is deleted in `finally`; the settings it touches are
+// restored.
+import { connectFoundry } from 'fvtt-mcp-dnd5e/client';
 
-const MCP = 'D:/Workbench/FVTT/Repos/fvtt-mcp-molten5e';
-const env = {};
-for (const line of readFileSync(`${MCP}/.env`, 'utf8').split(/\r?\n/)) {
-  if (line.trimStart().startsWith('#')) continue;
-  const m = /^\s*([A-Z0-9_]+)\s*=\s*(.*)\s*$/.exec(line);
-  if (m) env[m[1]] = m[2];
-}
-setTimeout(() => { console.error('[teleports] WATCHDOG 300s'); process.exit(3); }, 300_000);
-const f = new Foundry({
-  serverUrl: env.LOCAL_SERVER_URL || 'http://localhost:30000',
-  user: env.BF_SUITE_USER || 'Tester Assistant', password: env.BF_SUITE_PASSWORD ?? '',
-  adminKey: env.LOCAL_ADMIN_KEY, worldId: env.LOCAL_WORLD_ID || env.MOLTEN_WORLD_ID
-});
 console.log('[teleports] connecting to the local sandbox…');
-await f.connect();
+const { f, dispose } = await connectFoundry({ host: 'local', identity: 'suite', tag: 'teleports', watchdogMs: 300_000 });
 
 const out = await f.evaluate(async () => {
   const MOD = 'fvtt-mod-miscpatches';
@@ -123,7 +111,7 @@ const out = await f.evaluate(async () => {
   return { results };
 }, null);
 
-try { await f.dispose?.(); } catch { /* the socket is gone either way */ }
+await dispose();
 if (out.fatal) { console.error(`[teleports] FATAL: ${out.fatal}`); process.exit(2); }
 let failed = 0;
 for (const r of out.results) {

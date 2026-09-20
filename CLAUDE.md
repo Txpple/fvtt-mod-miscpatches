@@ -15,19 +15,19 @@ movement-pipeline facts). The first patch is that fix.
 ## Test environment
 
 - **The LOCAL sandbox is the test box**, never prod. It is a byte copy of the Molten prod world
-  run headless: `node ../fvtt-mcp-molten5e/scripts/local-foundry.mjs start|stop|status|restart`.
+  run headless: `node ../fvtt-mcp-dnd5e/scripts/local-foundry.mjs start|stop|status|restart`.
   Never launch the Electron app for suites.
-- **Deploy to the sandbox:** `node ../fvtt-mcp-molten5e/scripts/deploy-house-module.mjs
+- **Deploy to the sandbox:** `node ../fvtt-mcp-dnd5e/scripts/deploy-house-module.mjs
   fvtt-mod-miscpatches --local`, then **restart** the sandbox when `module.json` changed (a new
   setting, a new file in `esmodules`); a world reload is enough for script edits. A sandbox
   refresh from prod wipes locally deployed modules — re-deploy after every refresh.
-- **The suites** live in `tools/` and use the MCP repo's Foundry client
-  (`../fvtt-mcp-molten5e/dist/foundry.js`, credentials from its `.env`; the suite identity is
-  "Tester Assistant"). They reuse Battle Flow's fixtures on the sandbox (the *Battle Flow Test
+- **The suites** live in `tools/` and use the MCP repo's Foundry client through its declared
+  contract (`fvtt-mcp-dnd5e/client` — a `file:../fvtt-mcp-dnd5e` dependency, `npm install` once;
+  credentials from that repo's `.env`; the suite identity is "Tester Assistant"). They reuse Battle Flow's fixtures on the sandbox (the *Battle Flow Test
   Range* scene, the *BF Test* actors); if those are missing run
   `node ../fvtt-mod-battleflow/tools/fixture-suite.mjs`. Disconnect the MCP bridge
   (`disconnect-bridge`) before a suite or a restart — one connected user blocks the restart.
-- **Prod (Molten)** is deployed with the same script without `--local`, and only on the user's
+- **Prod (Molten)** is deployed with the same script as `FOUNDRY_HOST=molten` without `--local`, and only on the user's
   explicit say-so. A module.json change needs the prod process restarted, which is not ours to
   do. Never force-reload the user's prod window.
 
