@@ -10,3 +10,4 @@
  */
 import "./core.js";
 import "./patches/teleports.js";
+import "./patches/shim-chains.js";
