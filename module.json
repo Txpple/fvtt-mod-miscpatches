@@ -1,8 +1,8 @@
 {
   "id": "fvtt-mod-miscpatches",
   "title": "Misc Patches",
-  "description": "Small, independent fixes for things other modules and the platform get slightly wrong at the table, each behind its own setting. First patch: a listed teleport (Misty Step, Dimension Door, Moonlight Step, Shadow Step, Arcane Charge) lets the caster's token cross walls and other creatures on the one move that follows the cast, and the destination is judged by the spell's own words — a space you can see, an unoccupied space.",
-  "version": "1.0.0",
+  "description": "Small, independent fixes for things other modules and the platform get slightly wrong at the table, each behind its own setting. Old effect keys reach their new fields: dnd5e 6.0 redirects an effect written against a moved key only one step, so a key that moved twice (the PHB's Roving: a 35-foot speed read 3510) lands on the wrong field; each redirect is followed to its end.",
+  "version": "1.1.0",
   "authors": [
     {
       "name": "Matthew Sippel"
@@ -28,7 +28,7 @@
   },
   "url": "https://github.com/Txpple/fvtt-mod-miscpatches",
   "manifest": "https://github.com/Txpple/fvtt-mod-miscpatches/releases/latest/download/module.json",
-  "download": "https://github.com/Txpple/fvtt-mod-miscpatches/releases/download/v1.0.0/fvtt-mod-miscpatches.zip",
+  "download": "https://github.com/Txpple/fvtt-mod-miscpatches/releases/download/v1.1.0/fvtt-mod-miscpatches.zip",
   "readme": "https://github.com/Txpple/fvtt-mod-miscpatches#readme",
   "license": "MIT"
 }

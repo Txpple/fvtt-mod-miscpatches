@@ -9,5 +9,4 @@
  * module of its own. They share nothing but the settings menu.
  */
 import "./core.js";
-import "./patches/teleports.js";
 import "./patches/shim-chains.js";

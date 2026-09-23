@@ -10,7 +10,9 @@ MIT.
 
 **Born 2026-09-04** from the Misty Step block: Battle Flow's backlog holds the full measurement
 (`../fvtt-mod-battleflow/BACKLOG.md`, the Misty Step row; `NOTES.md` §1 there has the Foundry
-movement-pipeline facts). The first patch is that fix.
+movement-pipeline facts). That first patch, the teleports, was **REMOVED in v1.1.0** (user,
+2026-09-23: *"remove the teleport code/switch completely. its no longer relevant"* — FX Studio
+plays the move since 2026-09-06); v1.0.0 in the history holds it.
 
 ## Test environment
 
@@ -42,22 +44,11 @@ Bump `version` AND the `download` URL in `module.json` together, one `release:` 
 
 | Patch | File | Settings |
 | --- | --- | --- |
-| Teleports cross walls and creatures — **carried into FX Studio 2026-09-06** (its move shape: `displace`, the spot judged by `seen`/`unoccupied`); this copy stays on for prod under AA until FX Studio's cutover, then retires | `scripts/patches/teleports.js` | `teleports` (switch), `teleportList` (names) |
 | Old effect keys reach their new fields — dnd5e 6.0's `SHIM_FIELDS` redirects ONE hop; a key that moved twice (`movement.speed` → `movement.walk` → `movement.speeds.walk`) stranded on a non-number field (the PHB's Roving: speed 3510). Resolved to the end of each chain at `setup` (2026-09-23, Session 8) | `scripts/patches/shim-chains.js` | `shimChains` (switch, requires reload) |
-
-**Teleports:** Automated Animations' teleport preset moves the token with a bare
-`document.move()`; Foundry walks that, so walls and (under dnd5e's full movement automation)
-hostile creatures stop it. Foundry's `blink` is wall-checked too; only `displace` crosses both,
-and a token's `movementAction` may be set to it. The patch arms the caster's token with
-`displace` at a listed use, judges the move in `preMoveToken` (sight wall → refuse; creature on
-the square → refuse), restores the action on `moveToken` or after two minutes. ⚠ Automated
-Animations' own *Check Collision* preset option refuses a wall at the circle before any move —
-the user turns it off on the teleport presets. Suite: `node tools/smoke-teleports.mjs`.
 
 **Shim chains:** measured 2026-09-23 on dnd5e 6.0.3 — `_applyChangeShim` rewrites a change's key
 through `ActiveEffect5e.SHIM_FIELDS` once; `system.attributes.movement.speed`'s entry names
 `…movement.walk`, itself shimmed to `…movement.speeds.walk`. The patch points each entry at the
-end of its chain (a cycle is left alone) before any actor prepares. ⚠ **The module is DISABLED
-on prod** (the teleport patch moved to FX Studio): this patch helps only once the user enables
-Misc Patches again, and then the `teleports` switch should be OFF so FX Studio alone plays the
-teleport. Suite: `node tools/smoke-shim-chains.mjs` (in-memory actors, writes nothing).
+end of its chain (a cycle is left alone) before any actor prepares. Released in v1.1.0
+(2026-09-23). Suite: `node tools/smoke-shim-chains.mjs` (in-memory actors, writes nothing; the
+module must be enabled in the sandbox world for it to run).
