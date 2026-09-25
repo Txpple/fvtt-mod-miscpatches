@@ -1,5 +1,13 @@
 # Misc Patches — working notes for sessions in this repo
 
+> **RETIRED 2026-09-25 — do not add work here.** Replaced by Vendor Fixes
+> (`../fvtt-mod-vendorfixes`, user, 2026-09-25: *"port over the misc patches and put them here,
+> in the proper form, and retire misc patches"*). The shim-chains patch lives on there as VF-001,
+> tracked in its `REGISTER.md`. The GitHub repo is archived (read-only). Prod may still run
+> v1.1.0 until Vendor Fixes is installed there and this module is disabled. The notes below are
+> history.
+
+
 **What this is.** A house Foundry VTT module of small, independent patches for things other
 modules and the platform get slightly wrong at the table. Each patch is one file under
 `scripts/patches/`, behind its own world setting, registering its own hooks. Nothing here is a

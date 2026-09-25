@@ -1,5 +1,12 @@
 # Misc Patches
 
+> **Retired 2026-09-25.** Misc Patches is replaced by
+> [Vendor Fixes](https://github.com/Txpple/fvtt-mod-vendorfixes). Its one live patch, *Old effect
+> keys reach their new fields*, moved there unchanged as **VF-001**. Install and enable Vendor
+> Fixes, then disable Misc Patches; running both at once is harmless. This repository is archived
+> and gets no further changes.
+
+
 Small, independent fixes for things other modules and the platform get slightly wrong at the
 table. One patch per file, each behind its own setting in **Game Settings → Configure Settings →
 Misc Patches**. Nothing here is a rule of the game; that is what [Battle Flow](https://github.com/Txpple/fvtt-mod-battleflow)
